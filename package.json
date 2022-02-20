@@ -1,0 +1,32 @@
+{
+  "name": "5.-forkify",
+  "version": "1.0.0",
+  "description": "Recipe application",
+  "source": "index.html",
+  "scripts": {
+    "start": "parcel index.html && --no-scope-hoist --no-source-maps",
+    "build": "parcel build index.html && --no-scope-hoist --no-source-maps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbsedin/forkify.git"
+  },
+  "keywords": [
+    "OPP",
+    "ASYNCHROM",
+    "WAIT",
+    "SYNC",
+    "FETCH",
+    "API"
+  ],
+  "author": "Bievenu Sedin Massamba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mbsedin/forkify/issues"
+  },
+  "homepage": "https://github.com/mbsedin/forkify#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.3.2",
+    "parcel": "^2.3.2"
+  }
+}
