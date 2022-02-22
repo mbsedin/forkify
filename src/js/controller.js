@@ -2,10 +2,15 @@
 import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
 import searchView from "./views/searchView.js";
-
+import resultsViews from "./views/resultsViews.js";
 // Polyfill
 import "core-js/stable";
 import "regenerator-runtime/runtime";
+
+// Hot module reload
+if (module.hot) {
+  module.hot.accept();
+}
 
 // Show recipe in the recipe container
 const controlRecipes = async function () {
@@ -29,6 +34,8 @@ const controlRecipes = async function () {
 // Show recipes in the result container
 const controlSearchResults = async function () {
   try {
+    resultsViews.renderSpinner();
+
     //1) Get search query
     const query = searchView.getQuery();
     if (!query) return;
@@ -37,7 +44,7 @@ const controlSearchResults = async function () {
     await model.loadSearchResults(query);
 
     //3) Render results
-    console.log(model.state.search.results);
+    resultsViews.render(model.state.search.results);
   } catch (error) {
     console.log(error);
   }
