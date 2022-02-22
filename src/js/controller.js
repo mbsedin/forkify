@@ -10,21 +10,23 @@ import "regenerator-runtime/runtime";
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
-
     if (!id) return;
 
+    // 0. Render spinner
     recipeView.renderSpinner();
 
-    // 1.) Rendering the recipe
+    // 1. Rendering the recipe
     await model.loadRecipe(id);
 
     // 2. renderSpinner
     recipeView.render(model.state.recipe);
   } catch (error) {
-    console.log(error);
+    recipeView.renderError();
   }
 };
 
-["hashchange", "load"].forEach((ev) =>
-  window.addEventListener(ev, controlRecipes)
-);
+// Render recipe on load and HashChange
+const init = function () {
+  recipeView.addHandlerRender(controlRecipes);
+};
+init();

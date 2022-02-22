@@ -19,6 +19,6 @@ export const loadRecipe = async function (id) {
       sourceUrl: recipe.source_url,
     };
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
