@@ -1,6 +1,7 @@
 // Modules
 import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
+import searchView from "./views/searchView.js";
 
 // Polyfill
 import "core-js/stable";
@@ -25,8 +26,27 @@ const controlRecipes = async function () {
   }
 };
 
+// Show recipes in the result container
+const controlSearchResults = async function () {
+  try {
+    //1) Get search query
+    const query = searchView.getQuery();
+    if (!query) return;
+
+    //2) Load search results
+    await model.loadSearchResults(query);
+
+    //3) Render results
+    console.log(model.state.search.results);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // Render recipe on load and HashChange
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  searchView.addHandlerSearch(controlSearchResults);
 };
+
 init();
